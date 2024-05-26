@@ -1,0 +1,52 @@
+/* Add this in your global CSS file, e.g., styles/globals.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input, select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background-color: #999;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}

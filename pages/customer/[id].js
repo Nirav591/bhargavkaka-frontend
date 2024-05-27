@@ -15,6 +15,7 @@ const CustomerDetails = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState(false)
+  
 
   useEffect(() => {
     if (id) {
@@ -35,30 +36,7 @@ const CustomerDetails = () => {
     }
   }, [id]);
 
-  const formik = useFormik({
-    initialValues: {
-      price: '',
-      brokrage: '',
-      broker_name: '',
-      broker_mobile_number: '',
-    },
-    onSubmit: async (values) => {
-      setSubmitting(true);
-      try {
-        const response = await axios.post('https://bhargavkaka.unize.co.in/api/customer/add-detail', {
-          customer_id: id,
-          ...values,
-        });
-        if (response.data.message) {
-          toast.success(response.data.message);
-        }
-      } catch (error) {
-        toast.error('Failed to add detail');
-      } finally {
-        setSubmitting(false);
-      }
-    },
-  });
+ 
 
   return (
     <div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+
 const TransactionList = ({ id }) => {
     const [transactions, setTransactions] = useState([]);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
@@ -15,22 +16,22 @@ const TransactionList = ({ id }) => {
     const formatDate = (inputDate) => {
         // Create a Date object from the input date string
         const date = new Date(inputDate);
-      
+
         // Array of month names
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December'];
-      
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
         // Get day, month, and year from the date object
         const day = date.getDate();
         const monthIndex = date.getMonth();
         const year = date.getFullYear();
-      
+
         // Format the date as "day month year"
         const formattedDate = `${day} ${monthNames[monthIndex]} ${year}`;
-      
+
         return formattedDate;
-      };
-    
+    };
+
 
     const fetchTransactions = async () => {
         try {
@@ -79,6 +80,20 @@ const TransactionList = ({ id }) => {
         );
         setFilteredTransactions(filtered);
     }, [searchTerm, transactions]);
+
+    const deleteTransaction = async (transactionId) => {
+        console.log(transactionId, "transactionId");
+        try {
+            const response = await axios.delete(`https://bhargavkaka.unize.co.in/api/transaction/delete/${transactionId}`);
+            console.log('Response:', response);
+            fetchTransactions(); // Refresh the list after deletion
+            toast.success("Transaction deleted successfully");
+        } catch (error) {
+            console.error('Error deleting data:', error);
+            toast.error("Failed to delete transaction");
+        }
+    };
+
 
     return (
         <div className="container">
@@ -136,11 +151,14 @@ const TransactionList = ({ id }) => {
                                                         <button onClick={() => setEditingIndex(null)}>Cancel</button>
                                                     </>
                                                 ) : (
-                                                    <button onClick={() => {
-                                                        setEditingIndex(index);
-                                                        setEditReason(transaction.reason);
-                                                        setEditAmount(transaction.amount);
-                                                    }}>Edit</button>
+                                                    <>
+                                                        <button onClick={() => {
+                                                            setEditingIndex(index);
+                                                            setEditReason(transaction.reason);
+                                                            setEditAmount(transaction.amount);
+                                                        }}>Edit</button>
+                                                        <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
+                                                    </>
                                                 )}
                                             </td>
                                         </tr>
@@ -195,11 +213,14 @@ const TransactionList = ({ id }) => {
                                                         <button onClick={() => setEditingIndex(null)}>Cancel</button>
                                                     </>
                                                 ) : (
-                                                    <button onClick={() => {
-                                                        setEditingIndex(index);
-                                                        setEditReason(transaction.reason);
-                                                        setEditAmount(transaction.amount);
-                                                    }}>Edit</button>
+                                                    <>
+                                                        <button onClick={() => {
+                                                            setEditingIndex(index);
+                                                            setEditReason(transaction.reason);
+                                                            setEditAmount(transaction.amount);
+                                                        }}>Edit</button>
+                                                        <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
+                                                    </>
                                                 )}
                                             </td>
                                         </tr>

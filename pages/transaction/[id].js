@@ -4,9 +4,9 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import BrokerForm from '@/component/BrokerForm';
-import TransactionForm from '@/component/TransactionForm';
-import TransactionsPage from '@/component/TransactionList';
+import BrokerForm from '@/components/BrokerForm';
+import TransactionForm from '@/components/TransactionForm';
+import TransactionsPage from '@/components/TransactionList';
 
 const Transaction = () => {
   const router = useRouter();

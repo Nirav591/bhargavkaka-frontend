@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import TransactionList from '../component/TransactionAll';
+import TransactionList from './TransactionAll';
 
 const TransactionsPage = ({ id , setForm }) => {
    
